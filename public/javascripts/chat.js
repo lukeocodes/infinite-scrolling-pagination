@@ -83,16 +83,16 @@ class ChatApp {
           if (conversation.members.get(value.from)) {
             switch (value.type) {
               case 'text':
-                eventsHistory = this.senderMessage(user, conversation.members.get(value.from), value) + eventsHistory
+                eventsHistory = this.senderMessage(user, conversation.members.get(value.from), value) + eventsHistory;
                 break;
               case 'member:joined':
-                eventsHistory = this.memberJoined(conversation.members.get(value.from), value) + eventsHistory
+                eventsHistory = this.memberJoined(conversation.members.get(value.from), value) + eventsHistory;
                 break;
             }
           }
-        })
+        });
 
-        this.messageFeed.innerHTML = eventsHistory + this.messageFeed.innerHTML
+        this.messageFeed.innerHTML = eventsHistory + this.messageFeed.innerHTML;
 
         this.scrollFeedToBottom();
       })
