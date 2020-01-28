@@ -12,13 +12,6 @@ class ChatApp {
     this.messageFeed.scrollTop = position;
   }
 
-<<<<<<< HEAD
-  isFeedAtTop() {
-    return 0 === this.messageFeed.scrollTop;
-  }
-
-=======
->>>>>>> ef4a147a4cf36ed87c0b0acbc6162de4ce52fced
   isFeedAtBottom() {
     return (this.messageFeed.offsetHeight+this.messageFeed.scrollTop)===this.messageFeed.scrollHeight;
   }
@@ -116,42 +109,17 @@ class ChatApp {
         })
         .catch(this.errorLogger);
     });
-<<<<<<< HEAD
 
-    this.messageFeed.addEventListener("scroll", () => {
-      this.scrollHeight = this.messageFeed.scrollHeight;
-
-      if (this.isFeedAtTop() && this.lastPage.hasNext()) {
-        if (this.lastPage.hasNext()) {
-          this.lastPage
-            .getNext()
-            .then((eventsPage) => {
-              this.lastPage = eventsPage;
-              var moreEvents = "";
-
-              eventsPage.items.forEach((value, key) => {
-                if (this.conversation.members.get(value.from)) {
-                  switch (value.type) {
-                    case 'text':
-                      moreEvents = this.senderMessage(this.user, this.conversation.members.get(value.from), value) + moreEvents;
-                      break;
-                    case 'member:joined':
-                      moreEvents = this.memberJoined(this.conversation.members.get(value.from), value) + moreEvents;
-                      break;
-                  }
-                }
-              });
-
-              this.messageFeed.innerHTML = moreEvents + this.messageFeed.innerHTML;
-
-              this.scrollTo(this.messageFeed.scrollHeight-this.scrollHeight);
-            })
-            .catch(this.errorLogger);
-        }
+    this.messageTextarea.addEventListener('keydown', event => {
+      if (event.keyCode === 13) {
+        this.conversation.sendText(this.messageTextarea.value)
+          .then(() => {
+              this.eventLogger('text')();
+              this.messageTextarea.value = '';
+          })
+          .catch(this.errorLogger);
       }
     });
-=======
->>>>>>> ef4a147a4cf36ed87c0b0acbc6162de4ce52fced
   }
 
   errorLogger(error) {
