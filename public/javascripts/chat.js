@@ -12,10 +12,13 @@ class ChatApp {
     this.messageFeed.scrollTop = position;
   }
 
+<<<<<<< HEAD
   isFeedAtTop() {
     return 0 === this.messageFeed.scrollTop;
   }
 
+=======
+>>>>>>> ef4a147a4cf36ed87c0b0acbc6162de4ce52fced
   isFeedAtBottom() {
     return (this.messageFeed.offsetHeight+this.messageFeed.scrollTop)===this.messageFeed.scrollHeight;
   }
@@ -62,7 +65,7 @@ class ChatApp {
       if (feedAtBottom) {
         this.scrollFeedToBottom();
       }
-    })
+    });
 
     conversation.on("member:joined", (member, event) => {
       console.log(`*** ${member.user.name} joined the conversation`);
@@ -72,7 +75,7 @@ class ChatApp {
       if (feedAtBottom) {
         this.scrollFeedToBottom();
       }
-    })
+    });
 
     this.showConversationHistory(conversation, user);
   }
@@ -101,7 +104,7 @@ class ChatApp {
 
         this.scrollFeedToBottom();
       })
-      .catch(this.errorLogger)
+      .catch(this.errorLogger);
   }
 
   setupUserEvents() {
@@ -113,6 +116,7 @@ class ChatApp {
         })
         .catch(this.errorLogger);
     });
+<<<<<<< HEAD
 
     this.messageFeed.addEventListener("scroll", () => {
       this.scrollHeight = this.messageFeed.scrollHeight;
@@ -146,6 +150,8 @@ class ChatApp {
         }
       }
     });
+=======
+>>>>>>> ef4a147a4cf36ed87c0b0acbc6162de4ce52fced
   }
 
   errorLogger(error) {
